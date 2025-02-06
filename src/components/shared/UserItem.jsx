@@ -1,3 +1,7 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable react/prop-types */
+
 import { Add as AddIcon, Remove as RemoveIcon } from "@mui/icons-material";
 import {
   Avatar,
@@ -6,7 +10,7 @@ import {
   Stack,
   Typography
 } from "@mui/material";
-import React, { memo } from "react";
+import { memo } from "react";
 import { transformImage } from "../../lib/features";
 
 const UserItem = ({
@@ -16,6 +20,7 @@ const UserItem = ({
   isAdded = false,
   styling = {},
 }) => {
+
   const { name, _id, avatar } = user;
   return (
     <ListItem>

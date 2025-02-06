@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import {
   Add as AddIcon,
   Group as GroupIcon,
@@ -84,7 +86,7 @@ const Header = () => {
               variant="h6"
               sx={{ display: { xs: "none", sm: "block" } }}
             >
-              Chattu
+              Chat App
             </Typography>
 
             <Box sx={{ display: { xs: "block", sm: "none" } }}>

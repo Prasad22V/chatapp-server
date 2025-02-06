@@ -1,26 +1,23 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useInputValidation } from "6pp";
+import { Search as SearchIcon } from "@mui/icons-material";
 import {
   Dialog,
   DialogTitle,
   InputAdornment,
   List,
-  ListItem,
-  ListItemText,
   Stack,
-  TextField,
+  TextField
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useInputValidation } from "6pp";
-import { Search as SearchIcon } from "@mui/icons-material";
-import UserItem from "../shared/UserItem";
-import { sampleUsers } from "../../constants/sampleData";
+import  { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsSearch } from "../../redux/reducer/micsReducer";
+import { useAsynchMutation } from "../../hooks/hook";
 import {
   useLazySearchUserQuery,
   useSendFriendRequestMutation,
 } from "../../redux/api/api";
-import { useAsynchMutation } from "../../hooks/hook";
-import toast from "react-hot-toast";
+import { setIsSearch } from "../../redux/reducer/micsReducer";
+import UserItem from "../shared/UserItem";
 
 // const users = [1, 2, 3];
 
@@ -64,7 +61,7 @@ const Search = () => {
         <DialogTitle textAlign={"center"}>Find People</DialogTitle>
         <TextField
           label=""
-          value={search.value}
+          value={search.value || ""}
           onChange={search.changeHandler}
           variant="outlined"
           size="small"

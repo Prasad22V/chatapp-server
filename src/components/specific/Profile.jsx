@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import { Avatar, Stack, Typography } from "@mui/material";
 import {
   Face as FaceIcon,

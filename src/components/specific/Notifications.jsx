@@ -1,3 +1,5 @@
+/* eslint-disable react/display-name */
+/* eslint-disable react/prop-types */
 import {
   Avatar,
   Button,
@@ -8,7 +10,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import React, { memo } from "react";
+import  { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAsynchMutation, useErrors } from "../../hooks/hook";
 import {
@@ -19,25 +21,22 @@ import { setIsNotification } from "../../redux/reducer/micsReducer";
 
 const Notifications = () => {
   const { isNotification } = useSelector((state) => state.mics);
-
   const dispatch = useDispatch();
 
+  // Fetching notifications
   const { isLoading, data, error, isError } = useGetNotificationsQuery();
-
+  
+  // Handling friend request acceptance
   const [acceptRequest] = useAsynchMutation(useAcceptFriendRequestMutation);
 
   const friendRequestHandler = async ({ _id, accept }) => {
     dispatch(setIsNotification(false));
-
-   await acceptRequest("Accepting...", { requestId: _id, accept });
-
-   
+    await acceptRequest("Accepting...", { requestId: _id, accept });
   };
 
   const closeHandler = () => dispatch(setIsNotification(false));
 
   useErrors([{ error, isError }]);
-  // console.log(data.allRequests);
 
   return (
     <Dialog open={isNotification} onClose={closeHandler}>
@@ -48,8 +47,8 @@ const Notifications = () => {
           <Skeleton />
         ) : (
           <>
-            {data?.allRequests.length > 0 ? (
-              data?.allRequests?.map(({ sender, _id }) => (
+            {data?.allRequests?.length > 0 ? (
+              data.allRequests.map(({ sender, _id }) => (
                 <NotificationItem
                   sender={sender}
                   _id={_id}
@@ -83,24 +82,19 @@ const NotificationItem = memo(({ sender, _id, handler }) => {
         <Typography
           variant="body1"
           sx={{
-            flexGlow: 1,
+            flexGrow: 1, // Fixed typo
             display: "-webkit-box",
-            WebkitLineClamp: 1,
-            webkitBoxOrient: "vertical",
+            WebkitLineClamp: 1, // Fixed casing
+            WebkitBoxOrient: "vertical", // Fixed casing
             overflow: "hidden",
             textOverflow: "ellipsis",
             width: "100%",
           }}
         >
-          {`${name} sent request`}
+          {`${name} sent a friend request`}
         </Typography>
 
-        <Stack
-          direction={{
-            xs: "column",
-            sm: "row",
-          }}
-        >
+        <Stack direction={{ xs: "column", sm: "row" }}>
           <Button onClick={() => handler({ _id, accept: true })}>Accept</Button>
           <Button color="error" onClick={() => handler({ _id, accept: false })}>
             Reject
